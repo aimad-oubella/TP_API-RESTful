@@ -1,0 +1,23 @@
+<section class="container py-4">
+  @if (errorMessage()) {
+    <div class="alert alert-danger">{{ errorMessage() }}</div>
+    <a class="btn btn-outline-secondary" [routerLink]="['/product-list']">Retour</a>
+  } @else if (product()) {
+    <div class="details-layout">
+      <img
+        class="details-image"
+        [src]="product()?.image || 'https://placehold.co/900x600?text=Product'"
+        [alt]="product()?.title"
+      >
+      <div>
+        <span class="badge text-bg-light mb-2">{{ product()?.category?.title }}</span>
+        <h1 class="h2">{{ product()?.title }}</h1>
+        <p class="lead text-muted">{{ product()?.description }}</p>
+        <p class="h4">{{ product()?.price | currency:'MAD ':'symbol':'1.2-2' }}</p>
+        <a class="btn btn-primary mt-3" [routerLink]="['/product-list']">Retour aux produits</a>
+      </div>
+    </div>
+  } @else {
+    <div class="alert alert-info">Chargement du produit...</div>
+  }
+</section>

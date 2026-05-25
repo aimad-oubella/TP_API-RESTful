@@ -1,0 +1,46 @@
+<section class="container py-4">
+  <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-3 mb-4">
+    <div>
+      <h1 class="h3 mb-1">Produits</h1>
+      <p class="text-muted mb-0">{{ totalElements() }} produit(s) disponible(s)</p>
+    </div>
+
+    <div class="filter-panel">
+      <label for="category" class="form-label">Categorie</label>
+      <select id="category" class="form-select" [(ngModel)]="selectedCategoryId" (change)="onCategoryChange()">
+        <option [ngValue]="null">Toutes les categories</option>
+        @for (category of categories(); track category.id) {
+          <option [ngValue]="category.id">{{ category.title }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  @if (errorMessage()) {
+    <div class="alert alert-danger">{{ errorMessage() }}</div>
+  }
+
+  @if (loading()) {
+    <div class="alert alert-info">Chargement des produits...</div>
+  } @else if (products().length === 0) {
+    <div class="alert alert-secondary">Aucun produit trouve.</div>
+  } @else {
+    <div class="row g-4">
+      @for (product of products(); track product.id) {
+        <div class="col-12 col-md-6 col-xl-4">
+          <app-product [product]="product" />
+        </div>
+      }
+    </div>
+  }
+
+  <div class="d-flex align-items-center justify-content-between mt-4">
+    <button class="btn btn-outline-secondary" type="button" (click)="previousPage()" [disabled]="page() === 0">
+      Precedent
+    </button>
+    <span class="text-muted">Page {{ page() + 1 }} / {{ totalPages() || 1 }}</span>
+    <button class="btn btn-outline-secondary" type="button" (click)="nextPage()" [disabled]="page() + 1 >= totalPages()">
+      Suivant
+    </button>
+  </div>
+</section>

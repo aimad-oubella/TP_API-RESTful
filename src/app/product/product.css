@@ -1,0 +1,13 @@
+.product-card {
+  border: 1px solid #e6e8ef;
+  border-radius: 8px;
+  box-shadow: 0 10px 22px rgba(30, 41, 59, 0.06);
+  overflow: hidden;
+}
+
+.product-image {
+  aspect-ratio: 4 / 3;
+  height: 190px;
+  object-fit: cover;
+  background: #f4f6f8;
+}
