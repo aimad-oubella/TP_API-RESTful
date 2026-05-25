@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  background: #f6f8fb;
+  color: #172033;
+}
+
+.btn,
+.form-control,
+.form-select,
+.card,
+.alert {
+  border-radius: 8px;
+}
