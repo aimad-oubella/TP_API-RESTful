@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.angular/
+
+backend/target/
+
+.env
+*.log
+.DS_Store
+Thumbs.db
