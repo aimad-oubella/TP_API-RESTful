@@ -6,18 +6,20 @@ import com.example.productcategory.exception.ResourceNotFoundException;
 import com.example.productcategory.mapper.CategoryMapper;
 import com.example.productcategory.repository.CategoryRepository;
 import com.example.productcategory.service.CategoryService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
+
+    public CategoryServiceImpl(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     @Override
     @Transactional(readOnly = true)

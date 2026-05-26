@@ -19,9 +19,6 @@ public final class CategoryMapper {
     }
 
     public static Category toEntity(CategoryDTO dto) {
-        return Category.builder()
-                .title(dto.title())
-                .description(dto.description())
-                .build();
+        return new Category(dto.title(), dto.description());
     }
 }

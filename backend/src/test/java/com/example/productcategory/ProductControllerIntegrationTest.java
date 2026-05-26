@@ -38,10 +38,7 @@ class ProductControllerIntegrationTest {
     void setUp() {
         productRepository.deleteAll();
         categoryRepository.deleteAll();
-        category = categoryRepository.save(Category.builder()
-                .title("Computers")
-                .description("Computer products")
-                .build());
+        category = categoryRepository.save(new Category("Computers", "Computer products"));
     }
 
     @Test

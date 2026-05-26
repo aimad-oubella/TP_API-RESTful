@@ -11,13 +11,7 @@ public final class ProductMapper {
     }
 
     public static Product toEntity(ProductRequestDTO dto, Category category) {
-        return Product.builder()
-                .title(dto.title())
-                .description(dto.description())
-                .price(dto.price())
-                .image(dto.image())
-                .category(category)
-                .build();
+        return new Product(dto.title(), dto.description(), dto.price(), dto.image(), category);
     }
 
     public static ProductResponseDTO toDto(Product product) {
