@@ -23,11 +23,31 @@ public class GlobalExceptionHandler {
                 errors.computeIfAbsent(error.getField(), field -> new ArrayList<>()).add(error.getDefaultMessage())
         );
 
+        String message = buildValidationMessage(errors);
+
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
                 .body(Map.of(
-                        "message", "Validation failed.",
+                        "message", message,
                         "errors", errors
                 ));
+    }
+
+    private String buildValidationMessage(Map<String, List<String>> errors) {
+        List<String> messages = errors.values()
+                .stream()
+                .flatMap(List::stream)
+                .toList();
+
+        if (messages.isEmpty()) {
+            return "Validation failed.";
+        }
+
+        int remainingErrors = messages.size() - 1;
+        if (remainingErrors == 0) {
+            return messages.get(0);
+        }
+
+        return messages.get(0) + " (and " + remainingErrors + " more errors)";
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)

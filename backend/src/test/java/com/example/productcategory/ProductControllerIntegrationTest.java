@@ -72,6 +72,7 @@ class ProductControllerIntegrationTest {
                                 }
                                 """))
                 .andExpect(status().isUnprocessableEntity())
+                .andExpect(jsonPath("$.message").isString())
                 .andExpect(jsonPath("$.errors.title").isArray())
                 .andExpect(jsonPath("$.errors.description").isArray())
                 .andExpect(jsonPath("$.errors.price").isArray())
@@ -92,7 +93,7 @@ class ProductControllerIntegrationTest {
         mockMvc.perform(get("/products")
                         .param("page", "0")
                         .param("size", "5")
-                        .param("categoryId", category.getId().toString()))
+                        .param("category_id", category.getId().toString()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content", hasSize(1)))
                 .andExpect(jsonPath("$.content[0].category.id").value(category.getId()))

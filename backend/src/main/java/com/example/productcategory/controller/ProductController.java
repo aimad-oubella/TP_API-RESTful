@@ -30,9 +30,11 @@ public class ProductController {
     @GetMapping
     public Page<ProductResponseDTO> findAll(
             @RequestParam(required = false) Long categoryId,
+            @RequestParam(name = "category_id", required = false) Long categoryIdSnakeCase,
             @PageableDefault(size = 10) Pageable pageable
     ) {
-        return productService.findAll(categoryId, pageable);
+        Long resolvedCategoryId = categoryId != null ? categoryId : categoryIdSnakeCase;
+        return productService.findAll(resolvedCategoryId, pageable);
     }
 
     @GetMapping("/{id}")
