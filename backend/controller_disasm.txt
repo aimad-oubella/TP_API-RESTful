@@ -1,0 +1,7 @@
+Compiled from "CategoryController.java"
+public class com.example.productcategory.controller.CategoryController {
+  public com.example.productcategory.controller.CategoryController(com.example.productcategory.service.CategoryService);
+  public java.util.List<com.example.productcategory.dto.CategoryDTO> findAll();
+  public com.example.productcategory.dto.CategoryDTO findById(java.lang.Long);
+  public com.example.productcategory.dto.CategoryDTO create(com.example.productcategory.dto.CategoryDTO);
+}
